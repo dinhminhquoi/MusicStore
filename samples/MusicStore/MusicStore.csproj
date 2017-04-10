@@ -4,13 +4,13 @@
 
   <PropertyGroup>
     <Description>Music store application on ASP.NET Core</Description>
-    <TargetFrameworks>net461;netcoreapp2.0</TargetFrameworks>
+    <TargetFrameworks>net461</TargetFrameworks>
     <DefineConstants>$(DefineConstants);DEMO</DefineConstants>
     <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
   </PropertyGroup>
 
   <ItemGroup>
-    <Content Update="ForTesting\**\*" CopyToPublishDirectory="Never" Condition=" '$(PublishForTesting)' != 'true' "/>
+    <Content Update="ForTesting\**\*" CopyToPublishDirectory="Never" Condition=" '$(PublishForTesting)' != 'true' " />
   </ItemGroup>
 
   <ItemGroup>
