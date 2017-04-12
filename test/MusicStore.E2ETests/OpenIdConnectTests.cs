@@ -78,7 +78,7 @@ namespace E2ETests
 
 
                 deploymentParameters.AdditionalPublishParameters =
-                    (applicationType == ApplicationType.Standalone ? $" -r {RuntimeEnvironment.GetRuntimeIdentifier()}" : "")
+                    (applicationType == ApplicationType.Standalone ? $" -r {Helpers.GetRuntimeIdentifier()}" : "")
                     + " /p:PublishForTesting=true";
 
                 // Override the connection strings using environment based configuration

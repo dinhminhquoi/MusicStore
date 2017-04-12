@@ -3,11 +3,28 @@ using System.IO;
 using System.Linq;
 using Microsoft.AspNetCore.Server.IntegrationTesting;
 using Microsoft.Extensions.Logging;
-
+using PlatformAbstractions = Microsoft.DotNet.PlatformAbstractions;
 namespace E2ETests
 {
     public class Helpers
     {
+        public static string GetRuntimeIdentifier()
+        {
+            var architecture = PlatformAbstractions.RuntimeEnvironment.RuntimeArchitecture;
+            switch (PlatformAbstractions.RuntimeEnvironment.OperatingSystemPlatform)
+            {
+                case PlatformAbstractions.Platform.Windows:
+                    return "win7-" + architecture;
+                case PlatformAbstractions.Platform.Linux:
+                    return "linux-" + architecture;
+                case PlatformAbstractions.Platform.Darwin:
+                    return "osx.10.12-" + architecture;
+                default:
+                    throw new InvalidOperationException(
+                        "Unrecognized operation system platform: " + PlatformAbstractions.RuntimeEnvironment.OperatingSystemPlatform);
+            }
+        }
+
         public static string GetApplicationPath(ApplicationType applicationType)
         {
             var current = new DirectoryInfo(AppContext.BaseDirectory);
